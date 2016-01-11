@@ -1,0 +1,28 @@
+#ifndef DRIVER_H
+#define DRIVER_H
+#include <unistd.h>
+#include <math.h>
+#include <iostream>
+#include <mutex>
+class Driver{
+private:
+  Driver(Driver const & _driver);
+  
+  
+protected:
+	Driver();
+	//virtual void operator()() = 0;
+	virtual ~Driver();
+	
+	static Driver* s_driverInstance;
+	
+public:
+	static Driver* instance();
+	static bool exists();
+};
+
+
+
+
+
+#endif

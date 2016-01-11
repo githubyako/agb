@@ -1,0 +1,30 @@
+#include "driver.h"
+#include "hwexception.h"
+
+Driver* Driver::s_driverInstance = nullptr;
+
+Driver::Driver(const Driver& _driver)
+{
+	throw HWException("Impossible de créer un driver par recopie");
+}
+
+Driver::Driver()
+{
+	
+}
+
+Driver::~Driver()
+{
+
+}
+
+bool Driver::exists()
+{
+	return (driverInstance != nullptr);
+}
+
+Driver* Driver::instance()
+{
+	if(driverInstance == nullptr) std::cout << "Driver pas encore créé" << std::endl;
+	return driverInstance;
+}

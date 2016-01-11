@@ -1,0 +1,68 @@
+#include <iostream>
+#include <thread>
+#include "motordriver.h"
+#include "picamdriver.h"
+#include "xloborgdriver.h"
+#include "hwexception.h"
+#include <vector>
+int main(int argc, char **argv) {
+    try{
+		std::cout << "Agribot initializing." << std::endl;
+		
+		/*
+		*  		Initialisation des ressources matérielles 
+		*/
+		XloborgDriver::create(100000); // instanciation du singleton xloborg
+		
+		std::vector<float> readvec;
+		for(int i = 0; i<50;++i){
+			usleep(100000);
+			std::cout << "Orientation = " << XloborgDriver::getOrientation() << std::endl;
+// 			std::cout << XloborgDriver::to_string() << std::endl;
+// 			readvec.push_back(XloborgDriver::getreading(2));
+			
+		}
+// 		float avg;
+// 		for(std::vector<float>::const_iterator cit = readvec.begin(); cit<readvec.end();++cit){
+// 			avg+=*cit;
+// 		}
+// 		avg=avg/readvec.size();
+// 		std::cout << "Average reading= " << std::to_string(avg) << std::endl;
+		/*
+		 * 		Destruction des threads pilotes de ressources etc
+		 */
+		XloborgDriver::end();
+
+	}catch(HWException hwe){
+		
+	}
+	
+	return 0;
+    /*************************
+     * TO DO 
+     * Créer un thread pour picam (+ traitement openCV et décisions....)
+     * Un thread pour xloborg
+     * Un thread pour commandes moteurs avec wiringpi
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+    
+    
+    
+}

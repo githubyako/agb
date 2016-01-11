@@ -1,0 +1,25 @@
+#ifndef SINGLETON_H
+#define SINGLETON_H
+#include <cassert>
+template <class T>
+class Singleton{
+	public:
+
+		static T* Instance() {
+			if(!m_pInstance) m_pInstance = new T;
+				assert(m_pInstance != nullptr);
+			return m_pInstance;
+		}
+		
+	protected:
+
+		Singleton();
+		~Singleton();
+
+	private:
+
+		Singleton(Singleton const&);
+		Singleton& operator=(Singleton const&);
+		static T* m_pInstance;
+};
+#endif
